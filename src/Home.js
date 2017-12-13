@@ -7,6 +7,12 @@ class Home extends Component {
     stock: ''
   }
 
+  _handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.props.history.push(`/stocks/${this.state.stock}`);
+    }
+  }
+
   render() {
     return (
       <div className="Home">
@@ -15,9 +21,13 @@ class Home extends Component {
           <input
             name="search"
             onChange={(e) => this.setState({stock: e.target.value})}
+            onKeyPress={this._handleKeyPress.bind(this)}
             placeholder="Search by ticker..."
+            autoFocus
           />
-          <Link className="button" to={`/stocks/${this.state.stock}`}>Search</Link>
+          <Link className="button" to={`/stocks/${this.state.stock}`}>
+            Search
+          </Link>
         </div>
       </div>
     );

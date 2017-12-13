@@ -6,6 +6,14 @@
   text-align: left;
   margin-left: 1em;
 }
+.Navbar a, .Navbar a:visited, .Navbar a:active {
+  text-decoration: none;
+  color: #333;
+}
+.Navbar .breadcrumb {
+  font-size: small;
+  color: #999;
+}
 .Navbar .search {
   text-align: right;
   margin: 1em;
