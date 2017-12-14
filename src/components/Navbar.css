@@ -15,21 +15,8 @@
   color: #999;
 }
 .Navbar .search {
+  flex: 1;
   text-align: right;
   margin: 1em;
-  flex: 1;
-}
-.Navbar .search input, .Navbar .search .button {
   font-size: small;
-  padding: 1em;
-  margin: 0 0.5em;
-  text-decoration: none;
-}
-.Navbar .search input {
-  width: 20em;
-}
-.Navbar .search .button {
-  border: 1px solid grey;
-  color: #333;
-  background-color: #ccc;
 }

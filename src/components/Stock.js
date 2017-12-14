@@ -1,43 +1,54 @@
-import React, { Component } from 'react';
-import Navbar from './Navbar';
-import './Stock.css';
+import React, { Component } from 'react'
+
+import FontAwesome from 'react-fontawesome'
+
+import './Stock.css'
 
 class Stock extends Component {
 
   render() {
-    if (this.props.error) {
+    var {isLoading, isError, isNotFound} = this.props;
+    if (isError) {
       return (
         <div>
-          <Navbar history={this.props.history} stock={this.props.stock}/>
           <div className="Stock">
-            Error Loading Stock Ticker, sorry :(
+            Error loading stock ticker.
+          </div>
+        </div>
+      )
+    }
+    if (isLoading) {
+      return (
+        <div>
+          <div className="Stock">
+            Loading stock ticker...
           </div>
         </div>
       );
     }
-    if (!this.props.data) {
+    if (isNotFound) {
       return (
         <div>
-          <Navbar history={this.props.history} stock={this.props.stock}/>
           <div className="Stock">
-            Loading Stock Ticker...
+            Stock symbol not found
           </div>
         </div>
-      );
+      )
     }
     return (
       <div>
-        <Navbar history={this.props.history} stock={this.props.stock}/>
         <div className="Stock">
           <div className="left">
-            <div className="code">
-              {this.props.stock}
+            <div className="symbol">
+              {this.props.symbol}
             </div>
             <div className="exchange">
-              NASDAQ
+              {this.props.exchange}
             </div>
             <div className="change">
-              up arrow
+              <FontAwesome
+                size="lg"
+                name={this.props.changeUp ? "arrow-up" : "arrow-down" } />
             </div>
           </div>
           <div className="right">
@@ -45,15 +56,15 @@ class Stock extends Component {
               <tbody>
                 <tr>
                   <td>Last Price:</td>
-                  <td>$ 195.73</td>
+                  <td>$ {this.props.lastPrice}</td>
                 </tr>
                 <tr>
                   <td>Change:</td>
-                  <td>1.35</td>
+                  <td>{this.props.change}</td>
                 </tr>
                 <tr>
                   <td>Percent Change:</td>
-                  <td>2.35 %</td>
+                  <td>{this.props.percentChange} %</td>
                 </tr>
               </tbody>
             </table>

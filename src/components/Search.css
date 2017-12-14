@@ -1,0 +1,14 @@
+.Search input, .Search .button {
+  font-size: inherit;
+  padding: 1em;
+  margin: 0 0.5em;
+  text-decoration: none;
+}
+.Search input {
+  width: 20em;
+}
+.Search .button {
+  border: 1px solid grey;
+  color: #333;
+  background-color: #ccc;
+}
