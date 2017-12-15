@@ -3,8 +3,6 @@ import { push } from 'react-router-redux'
 
 import { setBreadcrumb } from 'actions/navbar'
 
-import BarchartAPIKey from 'settings/BarchartAPIKey' // You must create this
-
 export const ASYNC_REQUEST = 'ASYNC_REQUEST'
 export const ASYNC_ERROR = 'ASYNC_ERROR'
 export const ASYNC_RESPONSE = 'ASYNC_RESPONSE'
@@ -16,10 +14,9 @@ export const fetchStock = symbol => (dispatch, getState) => {
   dispatch(setBreadcrumb(symbol))
   dispatch(push(`/stocks/${symbol}`))
   dispatch({ type: ASYNC_REQUEST })
-  axios.get('https://marketdata.websol.barchart.com/getQuote.json', {
+  axios.get('/api/search', {
     params: {
-      apikey: BarchartAPIKey,
-      symbols: symbol
+      symbol: symbol
     }
   }).then(response => dispatch({ type: ASYNC_RESPONSE, response })) // could probably set the shit properly here.
     .catch(error => dispatch({ type: ASYNC_ERROR }))

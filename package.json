@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
+    "express": "^4.16.2",
+    "nodemon": "^1.13.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -14,11 +16,13 @@
     "react-router-redux": "^4.0.8",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "request": "^2.83.0"
   },
   "scripts": {
     "start": "NODE_PATH=src react-scripts start",
     "build": "NODE_PATH=src react-scripts build",
+    "server": "nodemon server.js",
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "eject": "NODE_PATH=src react-scripts eject"
   }
