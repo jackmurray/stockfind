@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
 
 import './Stock.css'
@@ -7,8 +7,10 @@ import './Stock.css'
 class Stock extends Component {
 
   render() {
-    var {isLoading, isError, isNotFound} = this.props;
-    if (isError) {
+    // TODO: there's gotta be a better way of breaking this up.
+    
+    let { isLoading, didError, notFound, stock } = this.props
+    if (didError) {
       return (
         <div>
           <div className="Stock">
@@ -26,7 +28,7 @@ class Stock extends Component {
         </div>
       );
     }
-    if (isNotFound) {
+    if (notFound) {
       return (
         <div>
           <div className="Stock">
@@ -40,15 +42,15 @@ class Stock extends Component {
         <div className="Stock">
           <div className="left">
             <div className="symbol">
-              {this.props.symbol}
+              {stock.symbol}
             </div>
             <div className="exchange">
-              {this.props.exchange}
+              {stock.exchange}
             </div>
             <div className="change">
               <FontAwesome
                 size="lg"
-                name={this.props.changeUp ? "arrow-up" : "arrow-down" } />
+                name={stock.netChange > 0 ? "arrow-up" : "arrow-down" } />
             </div>
           </div>
           <div className="right">
@@ -56,15 +58,15 @@ class Stock extends Component {
               <tbody>
                 <tr>
                   <td>Last Price:</td>
-                  <td>$ {this.props.lastPrice}</td>
+                  <td>$ {stock.lastPrice}</td>
                 </tr>
                 <tr>
                   <td>Change:</td>
-                  <td>{this.props.change}</td>
+                  <td>{stock.netChange}</td>
                 </tr>
                 <tr>
                   <td>Percent Change:</td>
-                  <td>{this.props.percentChange} %</td>
+                  <td>{stock.percentChange} %</td>
                 </tr>
               </tbody>
             </table>
@@ -75,4 +77,17 @@ class Stock extends Component {
   }
 }
 
-export default Stock;
+Stock.propTypes = {
+  isLoading: PropTypes.bool, // TODO: move this into a Request component.
+  didError: PropTypes.bool,
+  notFound: PropTypes.bool,
+  stock: PropTypes.shape({
+    symbol: PropTypes.string.isRequired,
+    exchange: PropTypes.string.isRequired,
+    lastPrice: PropTypes.number.isRequired,
+    netChange: PropTypes.number.isRequired,
+    percentChange: PropTypes.number.isRequired,
+  })
+}
+
+export default Stock

@@ -1,14 +1,11 @@
-import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Home from 'components/Home'
+import { fetchStock } from 'actions/stock'
 
-class HomePage extends Component {
-  handleSearch(symbol) {
-    this.props.history.push(`/stocks/${symbol}`) // voila!
-  }
-  render() {
-    return <Home onSearch={this.handleSearch.bind(this)} />
-  }
-}
+const HomePage = connect(
+  (state) => ({}), // state to props
+  { onSearch: fetchStock } // props to dispatch
+)(Home)
 
 export default HomePage

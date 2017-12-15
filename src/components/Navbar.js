@@ -8,11 +8,14 @@ import './Navbar.css'
 
 class Navbar extends Component {
   render() {
+    let breadcrumb = this.props.breadcrumb &&
+      <span className="breadcrumb"> &gt; {this.props.breadcrumb}</span>
+
     return (
       <div className="Navbar">
         <h1 className="title">
-          <Link to='/'>StockFind</Link>
-          <span className="breadcrumb"> &gt; {this.props.searchTerm}</span>
+          <Link to="/">StockFind</Link>
+          {breadcrumb}
         </h1>
         <Search className='search' onSearch={this.props.onSearch} />
       </div>
@@ -22,7 +25,7 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string.isRequired
+  breadcrumb: PropTypes.string
 }
 
 export default Navbar
