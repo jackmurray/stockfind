@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
+    "express": "^4.16.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -17,9 +18,14 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "NODE_PATH=src react-scripts start",
+    "start": "concurrently \"NODE_PATH=src react-scripts start\" \"PORT=1234 node server.js\"",
+    "server": "PORT=1234 node server.js",
     "build": "NODE_PATH=src react-scripts build",
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "eject": "NODE_PATH=src react-scripts eject"
+  },
+  "proxy": "http://localhost:1234",
+  "devDependencies": {
+    "concurrently": "^3.5.1"
   }
 }

@@ -9,14 +9,14 @@ import createHistory from 'history/createBrowserHistory'
 import registerServiceWorker from './registerServiceWorker'
 
 import App from 'containers/App'
-import app from 'reducers/app'
+import reducer from 'reducers'
 
 import './index.css'
 
 const history = createHistory()
 
 const store = createStore(
-  app,
+  reducer,
   { stock: { isLoading: true } },
   applyMiddleware(
     thunk,

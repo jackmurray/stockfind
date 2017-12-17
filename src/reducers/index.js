@@ -3,9 +3,9 @@ import { combineReducers } from 'redux'
 import { stock } from 'reducers/stock'
 import { navbar } from 'reducers/navbar'
 
-export const app = combineReducers({
+export const reducer = combineReducers({
   stock,
   navbar
 })
 
-export default app
+export default reducer

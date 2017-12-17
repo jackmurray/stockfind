@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Navbar from 'components/Navbar'
 import { fetchStock } from 'actions/stock'
 
-class NavbarPage extends Component {
+class Layout extends Component {
   render() {
     let ReduxNavbar = connect(state => state.navbar, { onSearch: fetchStock })(Navbar); // TODO: consider moving this into Navbar
     return (
@@ -16,4 +16,4 @@ class NavbarPage extends Component {
   }
 }
 
-export default NavbarPage
+export default Layout
